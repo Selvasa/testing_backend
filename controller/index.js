@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const env = require('dotenv').config();
 const loginRoute = require('./login');
-const registerRoute=require('./register');
+const registerRoute = require('./register');
+const cors = require("cors");
 
 
 
@@ -18,7 +19,7 @@ async function connectDB() {
 connectDB()
     .then(() => console.log('Database Connected Successfully'))
     .catch((err) => console.log(err, 'some errors'));
-
+app.use(cors())
 app.use(express.json())
 app.use(loginRoute);
 app.use(registerRoute)

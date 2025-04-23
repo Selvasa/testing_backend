@@ -14,10 +14,10 @@ route.post("/login", async (req, res) => {
         const passwordCheck = await bcrypt.compare(password, login?.password,);
         if (passwordCheck) {
             const token = generateToken(login);
-            return res.json({ token: token, msg: 'Login Success fully ' })
+            return res.json({ token: token, message: 'Login Success fully ' })
         }
 
-        return res.status(401).json({ msg: 'Password Incorrect' });
+        return res.status(401).json({ message: 'Password Incorrect' });
 
     }
     else {
@@ -30,6 +30,6 @@ route.post("/login", async (req, res) => {
 
 route.get("/verify", verifyToken, (req, res) => {
 
-    res.json({ message: req.user })
+   return res.json({ message: req.user })
 })
 module.exports = route;

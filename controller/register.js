@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
         const users = await Register.find({ email: email });
 
         if (users.length > 0) {
-            return res.json({ message: "User Already Exist change email id" })
+            return res.status(401).json({ message: "User Already Exist change email id or login" })
         }
         const CreateUser = await new Register({ name, email, password: hasPassword }).save()
         res.status(201).json({ message: "Registered Successfully", data: CreateUser })
